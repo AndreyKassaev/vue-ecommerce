@@ -1,32 +1,33 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <TheSnackBar/>
+    <TheNavbar/>
+    <v-content>
+      <router-view :key="$route.fullPath"></router-view>
+    </v-content>
+    <TheFooter/>
+  </v-app>
 </template>
 
+<script>
+import TheNavbar from '@/components/TheNavbar/TheNavbar.vue'
+import TheSnackBar from '@/components/TheSnackBar.vue'
+import TheFooter from '@/components/TheFooter.vue'
+
+export default {
+  name: 'App',
+
+  components: {
+    TheNavbar,
+    TheSnackBar,
+    TheFooter
+  },
+  
+};
+</script>
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+button {
+    outline: none !important;
+} 
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
