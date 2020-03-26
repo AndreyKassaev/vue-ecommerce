@@ -36,9 +36,7 @@
                 Category:
             </p>
             <p class="my-2  title d-none d-flex d-sm-flex d-md-none">
-                Art Of
-                <strong> {{ this.category.title }}: </strong>
-                Category:
+                {{ this.category.title }} Category:
             </p>
             <TheSelectedCategoryArtSortBy />
         </div>

@@ -35,8 +35,7 @@
                 <strong> {{ this.author.name }}: </strong>
             </p>
             <p class="my-2  title d-none d-flex d-sm-flex d-md-none">
-                Art Of
-                <strong> {{ this.author.name }}: </strong>
+                {{ this.author.name }}:
             </p>
             <TheSelectedAuthorArtSortBy />
         </div>
