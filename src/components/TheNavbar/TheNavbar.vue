@@ -3,7 +3,7 @@
         <v-app-bar app dark>
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-            <v-toolbar-title @click="onTitleClick" class="titlecursor">
+            <v-toolbar-title @click="onTitleClick">
                 Fictional
                 <span class="font-weight-light">
                     Online

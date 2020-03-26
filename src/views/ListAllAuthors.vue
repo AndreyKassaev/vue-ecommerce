@@ -1,7 +1,10 @@
 <template>
     <v-container>
         <div class="bc">
-            <p class="my-2  display-2">
+            <p class="my-2  display-2 hidden-sm-and-down">
+                Authors:
+            </p>
+            <p class="my-1  title d-none d-flex d-sm-flex d-md-none">
                 Authors:
             </p>
         </div>
@@ -26,7 +29,12 @@
                 ></v-pagination>
                 <div v-else>
                     <h2 class="text-center">Nothing Found...</h2>
-                    <v-img class="notfoundimg" contain height="440px" :src="img.src"></v-img>
+                    <v-img
+                        class="notfoundimg"
+                        contain
+                        height="440px"
+                        :src="img.src"
+                    ></v-img>
                 </div>
             </v-col>
         </v-row>
@@ -63,9 +71,9 @@ export default {
         }
     },
     watch: {
-        authors(newVal, oldVal){
-            if(newVal != oldVal || newVal === null){
-                this.haveProducts()
+        authors(newVal, oldVal) {
+            if (newVal != oldVal || newVal === null) {
+                this.haveProducts();
             }
         }
     },
@@ -76,15 +84,15 @@ export default {
         ...mapMutations("TheAuthor", {
             mutatePage: "mutatePage"
         }),
-        haveProducts(){
-            try{
-                if(this.authors.length != 0){
-                    this.haveProductsBoolean = true
-                }else{
-                    this.haveProductsBoolean = false
+        haveProducts() {
+            try {
+                if (this.authors.length != 0) {
+                    this.haveProductsBoolean = true;
+                } else {
+                    this.haveProductsBoolean = false;
                 }
-            }catch(err){
-                this.haveProductsBoolean = false
+            } catch (err) {
+                this.haveProductsBoolean = false;
             }
         }
     },

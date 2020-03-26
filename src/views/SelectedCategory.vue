@@ -30,9 +30,14 @@
             class="d-flex justify-space-between align-center bc mt-3"
             v-if="this.category != null"
         >
-            <p class="my-2  display-2">
+            <p class="my-2  display-2 hidden-sm-and-down">
                 Art Of
                 <strong> {{ this.category.title }} </strong>
+                Category:
+            </p>
+            <p class="my-2  title d-none d-flex d-sm-flex d-md-none">
+                Art Of
+                <strong> {{ this.category.title }}: </strong>
                 Category:
             </p>
             <TheSelectedCategoryArtSortBy />

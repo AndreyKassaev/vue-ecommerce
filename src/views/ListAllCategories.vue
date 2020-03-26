@@ -1,7 +1,10 @@
 <template>
     <v-container>
         <div class="bc">
-            <p class="my-2  display-2">
+            <p class="my-2  display-2 hidden-sm-and-down">
+                Categories:
+            </p>
+            <p class="my-1  title d-none d-flex d-sm-flex d-md-none">
                 Categories:
             </p>
         </div>

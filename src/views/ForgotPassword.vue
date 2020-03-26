@@ -1,8 +1,8 @@
 <template>
-    <v-container fill-height fluid>
-        <v-row align="center" justify="center">
-            <v-col>
-                <v-card class="mx-auto" max-width="344">
+    <v-container>
+        <v-row class="justify-center">
+            <v-col cols="12" md="6" sm="6">
+                <v-card>
                     <v-card-title>
                         <h2>
                             Enter Your Email:
