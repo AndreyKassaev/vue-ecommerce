@@ -141,7 +141,18 @@ export default {
 };
 </script>
 <style scoped>
+button {
+    outline: none;
+}
 
+.v-pagination__item--active {
+    background-color: #eceff1 !important;
+    border-color: #eceff1 !important;
+}
+.bc {
+    border-top: 2px solid grey;
+    border-bottom: 2px solid grey;
+}
 .notfoundimg{
     opacity: 0.05;
 }
