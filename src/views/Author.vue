@@ -1,8 +1,8 @@
 <template>
-    <v-container fill-height fluid>
-        <v-row align="center" justify="center">
-            <v-col>
-                <v-card class="mx-auto" max-width="344">
+    <v-container>
+        <v-row class="justify-center">
+            <v-col cols="12" md="6" sm="8">
+                <v-card>
                     <v-card-title>
                         <h2>
                             Become An Author
@@ -46,6 +46,8 @@
                                 color="success"
                                 class="mr-4"
                                 @click="validate"
+                                block
+                                
                             >
                                 Become An Author
                             </v-btn>
@@ -82,12 +84,17 @@ export default {
         }),
         validate() {
             if (this.$refs.form.validate()) {
-                const data = new FormData();
-                data.append("image", this.image);
-                data.append("name", this.name);
-                data.append("bio", this.bio);
+                const formData = new FormData();
+                formData.append("image", this.image);
+                formData.append("name", this.name);
+                formData.append("bio", this.bio);
+
+                let complexData = {
+                    dataToPost: formData,
+                    name: this.name
+                }
                 
-                this.becomeAnAuthor(data);
+                this.becomeAnAuthor(complexData);
             }
         }
     }

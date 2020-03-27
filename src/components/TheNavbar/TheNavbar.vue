@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-app-bar app dark>
+        <v-app-bar app dark dense>
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
             <v-toolbar-title @click="onTitleClick" class="titlecursor">
@@ -18,25 +18,26 @@
             <v-btn class="ml-2 hidden-sm-and-down" light to="/categories">
                 Categories
             </v-btn>
+           
+            <TheAddProductButton
+                v-if="user === 'author'"
+            />
+            <TheBecomeAnAuthorButton
+                v-if="user === 'auth'"
+            />
             <ThePaymentHistoryButton
                 v-if="
                     user === 'auth' || user === 'author'
                 "
                 
             />
-            <TheCartIcon v-if="!emptyCartIcon" class="d-none d-flex d-sm-flex d-md-none"/>
-            <TheCartIconEmpty v-if="emptyCartIcon" class="d-none d-flex d-sm-flex d-md-none"/>
-            <TheBecomeAnAuthorButton
-                v-if="user === 'auth'"
-            />
-           
-            <TheAddProductButton
-                v-if="user === 'author'"
-            />
             <TheLoginButton
                 v-if="user === 'anon'"
                 class="hidden-sm-and-down"
             />
+            <TheLoginIcon v-if="user === 'anon'" />
+            <TheCartIcon class="d-none d-flex d-sm-flex d-md-none"/>
+            <TheCartIconEmpty v-if="emptyCartIcon" class="d-none d-flex d-sm-flex d-md-none"/>
             <TheCartButton class="hidden-sm-and-down" />
 
         </v-app-bar>
@@ -90,7 +91,7 @@
                     </v-list-item>
                     <v-list-item to="/login" v-if="user === 'anon'">
                         <v-list-item-icon>
-                            <v-icon>mdi-account</v-icon>
+                            <v-icon>mdi-account-key</v-icon>
                         </v-list-item-icon>
                         <v-list-item-title>Login</v-list-item-title>
                     </v-list-item>
@@ -150,6 +151,7 @@ import TheCartButton from "./TheCartButton.vue";
 import TheCartIcon from "./TheCartIcon.vue";
 import TheCartIconEmpty from "./TheCartIconEmpty.vue";
 import TheLoginButton from "./TheLoginButton.vue";
+import TheLoginIcon from "./TheLoginIcon.vue";
 import TheSearchButton from "./TheSearchButton.vue";
 import TheBecomeAnAuthorButton from "./TheBecomeAnAuthorButton.vue";
 import TheAddProductButton from "./TheAddProductButton.vue";
@@ -161,6 +163,7 @@ export default {
         TheCartIcon,
         TheCartIconEmpty,
         TheLoginButton,
+        TheLoginIcon,
         TheSearchButton,
         TheBecomeAnAuthorButton,
         TheAddProductButton,
@@ -174,7 +177,7 @@ export default {
             profileName: null,
             tokenArg: "token",
             profileArg: "profile",
-            emptyCartIcon: false
+            emptyCartIcon: true,
         };
     },
     computed: {

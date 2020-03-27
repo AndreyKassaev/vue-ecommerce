@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-row class="justify-center">
-            <v-col cols="12" md="6">
+            <v-col cols="12" md="6" sm="8">
                 <v-card>
                     <v-card-title>Don't Use Real Card Credentials</v-card-title>
                     <v-card-text>
@@ -21,7 +21,7 @@
             </v-col>
         </v-row>
         <v-row class="justify-center">
-            <v-col cols="12" md="6">
+            <v-col cols="12" md="6" sm="8">
                 <v-braintree
                     :authorization="this.clientToken"
                     @success="onSuccess"

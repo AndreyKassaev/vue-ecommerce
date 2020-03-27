@@ -8,7 +8,6 @@
                         v-on="on"
                         fab
                         small
-                        class="ml-2"
                         light
                     >
                         <v-icon>mdi-cart-outline</v-icon>

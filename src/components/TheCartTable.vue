@@ -1,12 +1,20 @@
 <template>
     <v-card class="mx-auto " elevation="24">
         <v-card-text>
-            <v-simple-table>
+            <v-simple-table >
                 <template v-slot:default>
                     <thead>
                         <tr>
                             <th class="text-left title font-weight-bold">
-                                Art Item
+                            <div class="d-flex align-center">
+                                <p>
+                                Art_
+                                </p>
+                                
+                                <p>
+                                Item
+                                </p>
+                            </div>
                             </th>
                             <th class="text-left title font-weight-bold">
                                 Price
@@ -15,7 +23,15 @@
                                 Quantity
                             </th>
                             <th class="text-left title font-weight-bold">
-                                Total Price
+                              <div class="d-flex align-center">
+                                <p>
+                                Total_
+                                </p>
+                                
+                                <p>
+                                Price
+                                </p>
+                            </div>
                             </th>
                             <th v-if="items.is_active" class="text-left"></th>
                         </tr>
@@ -33,8 +49,12 @@
                                         .join(" ")
                                 }}
                             </td>
-                            <td>{{ item.split(" ")[1] }} $</td>
                             <td>
+                            {{ item.split(" ")[1] }}$
+                            </td>
+                            <td>
+                            <div class="d-flex">
+                            
                                 <v-icon
                                     v-if="items.is_active"
                                     left
@@ -50,6 +70,7 @@
                                 >
                                     mdi-plus
                                 </v-icon>
+                            </div>
                             </td>
 
                             <td>
@@ -71,7 +92,7 @@
             </v-simple-table>
             <p class="text-right display-1 mt-4 mb-0 ult">
                 Total:
-                <strong color="black--text">{{ items.total_price }} $</strong>
+                <strong color="black--text">{{ items.total_price }}$</strong>
             </p>
         </v-card-text>
         <v-card-actions v-if="items.is_active" class="pa-0">
@@ -139,5 +160,8 @@ export default {
 }
 .pt:hover {
     cursor: pointer;
+}
+.v-application p {
+    margin-bottom: 0px !important; 
 }
 </style>

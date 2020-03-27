@@ -7,19 +7,9 @@
                     :content="badgeContent"
                     bordered
                     overlap
-                    class="mr-4 mt-2"
+                    class="mr-2 mt-2"
                 >
-                    <v-btn
-                        color="#FFB300"
-                        to="/cart"
-                        v-on="on"
-                        fab
-                        small
-                        class="ml-2"
-                        light
-                    >
-                        <v-icon>mdi-cart-outline</v-icon>
-                    </v-btn>
+                    <v-icon class="ml-2" @click="onIcon" v-on="on">mdi-cart-outline</v-icon>
                 </v-badge>
             </template>
             <span>My Cart</span>
@@ -45,12 +35,17 @@ export default {
             try {
                 if (this.totalItems.length != 0) {
                     this.haveProductsBoolean = true;
-                    this.badgeContent = this.totalItems
+                    this.badgeContent = this.totalItems;
                 } else {
                     this.haveProductsBoolean = false;
                 }
             } catch (err) {
                 this.haveProductsBoolean = false;
+            }
+        },
+        onIcon(){
+            if(this.$route.name != "cart"){
+                this.$router.push("/cart")
             }
         }
     },

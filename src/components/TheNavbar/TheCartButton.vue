@@ -1,7 +1,7 @@
 <template>
 <div>
     
-    <v-badge v-if="haveProductsBoolean" color="red" :content="this.totalItems" bordered overlap class="mr-4">
+    <v-badge v-if="haveProductsBoolean" color="red" :content="this.totalItems" bordered overlap class="mr-2">
         <v-btn
             color="#FFB300"
             class="text-capitalize d-none d-sm-flex ml-2 black--text"

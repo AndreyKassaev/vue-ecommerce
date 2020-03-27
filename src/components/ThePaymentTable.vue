@@ -9,20 +9,20 @@
                     <thead>
                         <tr>
                             <th class="text-left title font-weight-bold">Items</th>
-                            <th class="text-left title font-weight-bold">Total Price</th>
-                            <th class="text-left title font-weight-bold">Date Created</th>
-                            <th class="text-left title font-weight-bold">Is Payed</th>
-                            <th class="text-left title font-weight-bold">Is Active</th>
+                            <th class="text-left title font-weight-bold">Total_Price</th>
+                            <th class="text-left title font-weight-bold">Date_Created</th>
+                            <th class="text-left title font-weight-bold">Is_Payed</th>
+                            <th class="text-left title font-weight-bold">Is_Active</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="(item, index) in items" :key="index " v-if="item.items.length != 0" @click="onSelectedCart(item)">
                          
                             <td>
-                                {{ item.items[0].split(" ").slice(4).join(" ") }}... ({{item.total_items}} items)
+                                {{ item.items[0].split(" ").slice(4).join(" ") }}...({{item.total_items}}_items)
                             </td>
                             <td>
-                                {{ item.total_price }} $
+                                {{ item.total_price }}$
                             </td>
                             <td>
                                 {{ moment(item.date_created).fromNow()}}

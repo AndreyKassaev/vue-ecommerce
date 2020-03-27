@@ -37,7 +37,7 @@
                                 {{ item.title }}
                             </td>
 
-                            <td>{{ item.price }} $</td>
+                            <td>{{ item.price }}$</td>
                             <td @click="onEditIcon(item.title)">
                             <v-icon>
                             mdi-border-color

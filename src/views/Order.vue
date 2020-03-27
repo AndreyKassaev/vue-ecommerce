@@ -112,12 +112,12 @@ import {mapActions, mapGetters} from 'vuex'
             width: 20,
             isLoading: false,
             valid: true,
-            email: 'multarospo@enayu.com',
-            country:'testCountry',
-            city: 'testCity',
-            street: 'testStreet',
-            building: 12,
-            apartment:22,
+            email: '',
+            country:'',
+            city: '',
+            street: '',
+            building: '',
+            apartment: '',
             
             emailRules: [
                 v => !!v || 'E-mail is required',

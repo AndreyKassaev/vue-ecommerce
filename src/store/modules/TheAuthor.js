@@ -31,7 +31,7 @@ export default {
     mutations: {
         mutateAuthors(state, data) {
             state.authors = data.results;
-            let numberOfPages = Math.ceil(data.count/6)
+            let numberOfPages = Math.ceil(data.count / 6);
             state.pageCount = numberOfPages;
         },
         mutatePage(state, data) {
@@ -66,42 +66,66 @@ export default {
             let customHeader = {
                 Authorization: `Token ${authToken}`
             };
-            
             axios
-                .post(`${api.BASE_URI}auth/become-an-author/`, data, {
-                    headers: customHeader
-                })
+                .get(`${api.BASE_URI}auth/validate-name/${data.name}`)
                 .then(res => {
-                    commit("setMyProfile", res.data);
-                    commit(
-                        "TheSnackBar/mutateText",
-                        `You Are An Author Now, ${res.data.name}`,
-                        { root: true }
-                    );
-                    localStorage.setItem("profileImage", res.data.image);
-                    localStorage.setItem("profileName", res.data.name);
-                    router.push({ path: "/" });
+                    if (!res.data) {
+                        axios
+                            .post(
+                                `${api.BASE_URI}auth/become-an-author/`,
+                                data.dataToPost,
+                                {
+                                    headers: customHeader
+                                }
+                            )
+                            .then(res => {
+                                commit("setMyProfile", res.data);
+                                commit(
+                                    "TheSnackBar/mutateText",
+                                    `You Are An Author Now, ${res.data.name}`,
+                                    { root: true }
+                                );
+                                localStorage.setItem(
+                                    "profileImage",
+                                    res.data.image
+                                );
+                                localStorage.setItem(
+                                    "profileName",
+                                    res.data.name
+                                );
+                                router.push({ path: "/" });
+                            })
+                            .catch(err => console.log(err));
+                    } else {
+                        commit(
+                            "TheSnackBar/mutateText",
+                            `Name ${data.name} Already In Use`,
+                            { root: true }
+                        );
+                    }
                 })
                 .catch(err => console.log(err));
         },
-        editProfile({commit}, data){
+        editProfile({ commit }, data) {
             let authToken = localStorage.getItem("authToken");
             let customHeader = {
                 Authorization: `Token ${authToken}`
             };
             let postData = {
                 bio: data.bio
-            }
+            };
             axios
-                .patch(`${api.BASE_URI}auth/update-profile/${data.id}`, postData, {
-                    headers: customHeader
-                })
+                .patch(
+                    `${api.BASE_URI}auth/update-profile/${data.id}`,
+                    postData,
+                    {
+                        headers: customHeader
+                    }
+                )
                 .then(res => {
-                    commit(
-                        "TheSnackBar/mutateText",
-                        'Profile Updated',
-                        { root: true }
-                    );
+                    commit("TheSnackBar/mutateText", "Profile Updated", {
+                        root: true
+                    });
                 })
                 .catch(err => console.log(err));
         }
