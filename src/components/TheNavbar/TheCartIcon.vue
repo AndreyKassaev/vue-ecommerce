@@ -4,10 +4,10 @@
             <template v-slot:activator="{ on }">
                 <v-badge
                     color="red"
-                    :content="this.totalItems"
+                    :content="badgeContent"
                     bordered
                     overlap
-                    class="mr-4"
+                    class="mr-4 mt-2"
                 >
                     <v-btn
                         color="#FFB300"
@@ -24,23 +24,6 @@
             </template>
             <span>My Cart</span>
         </v-tooltip>
-
-        <v-tooltip bottom v-else>
-            <template v-slot:activator="{ on }">
-                <v-btn
-                    color="#FFB300"
-                    to="/cart"
-                    v-on="on"
-                    fab
-                    small
-                    class="ml-2"
-                    light
-                >
-                    <v-icon>mdi-cart-outline</v-icon>
-                </v-btn>
-            </template>
-            <span>My Cart</span>
-        </v-tooltip>
     </div>
 </template>
 
@@ -50,7 +33,8 @@ import { mapActions, mapGetters } from "vuex";
 export default {
     data() {
         return {
-            haveProductsBoolean: false
+            haveProductsBoolean: false,
+            badgeContent: null
         };
     },
     methods: {
@@ -61,6 +45,7 @@ export default {
             try {
                 if (this.totalItems.length != 0) {
                     this.haveProductsBoolean = true;
+                    this.badgeContent = this.totalItems
                 } else {
                     this.haveProductsBoolean = false;
                 }

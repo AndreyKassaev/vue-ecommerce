@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-app-bar app dark dense>
+        <v-app-bar app dark>
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
             <v-toolbar-title @click="onTitleClick" class="titlecursor">
@@ -24,7 +24,8 @@
                 "
                 
             />
-            <TheCartIcon class="d-none d-flex d-sm-flex d-md-none"/>
+            <TheCartIcon v-if="!emptyCartIcon" class="d-none d-flex d-sm-flex d-md-none"/>
+            <TheCartIconEmpty v-if="emptyCartIcon" class="d-none d-flex d-sm-flex d-md-none"/>
             <TheBecomeAnAuthorButton
                 v-if="user === 'auth'"
             />
@@ -147,6 +148,7 @@ import { mapGetters, mapMutations, mapActions } from "vuex";
 
 import TheCartButton from "./TheCartButton.vue";
 import TheCartIcon from "./TheCartIcon.vue";
+import TheCartIconEmpty from "./TheCartIconEmpty.vue";
 import TheLoginButton from "./TheLoginButton.vue";
 import TheSearchButton from "./TheSearchButton.vue";
 import TheBecomeAnAuthorButton from "./TheBecomeAnAuthorButton.vue";
@@ -157,6 +159,7 @@ export default {
     components: {
         TheCartButton,
         TheCartIcon,
+        TheCartIconEmpty,
         TheLoginButton,
         TheSearchButton,
         TheBecomeAnAuthorButton,
@@ -170,7 +173,8 @@ export default {
             profileImage: null,
             profileName: null,
             tokenArg: "token",
-            profileArg: "profile"
+            profileArg: "profile",
+            emptyCartIcon: false
         };
     },
     computed: {
@@ -180,6 +184,9 @@ export default {
         }),
         ...mapGetters("TheAuthor", {
             myProile: "getMyProfile"
+        }),
+        ...mapGetters("TheCart", {
+            totalItems: "getTotalItems"
         })
     },
     watch: {
@@ -192,13 +199,26 @@ export default {
             if(newVal != oldVal || newVal === null){
                 this.whoIsItReactive(this.profileArg)
             }
-        }
+        },
+        totalItems(newVal, oldVal){
+            if(newVal != null){
+                this.emptyCartIcon = false
+            }else{
+                this.emptyCartIcon = true
+            }
+        },
+        
+        
     },
     methods: {
+        ...mapActions("TheCart", {
+            getTotalItems: "getTotalItems"
+        }),
        
         onSearchEnter() {
             this.drawer = false;
         },
+       
         onProfile(){
             if (this.$route.name != "Profile") {
                 let name = localStorage.getItem('profileName')
@@ -245,6 +265,7 @@ export default {
         })
     },
     mounted() {
+        this.getTotalItems();
         this.whoIsIt();
     }
 };
