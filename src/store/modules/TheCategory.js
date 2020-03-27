@@ -26,7 +26,9 @@ export default {
     mutations: {
         mutateCategories(state, data){
             state.categories = data.results
-            state.pageCount = data.count
+            let numberOfPages = Math.ceil(data.count/6)
+            state.pageCount = numberOfPages;
+            
         },
         setAllCategoriesNoPagination(state, data){
             let categoriesArray = []

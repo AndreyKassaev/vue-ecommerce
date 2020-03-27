@@ -44,7 +44,8 @@ export default {
     mutations: {
         mutateProducts(state, data) {
             state.products = data.results;
-            state.pageCount = data.count;
+            let numberOfPages = Math.ceil(data.count/6)
+            state.pageCount = numberOfPages;
         },
         mutatePage(state, data) {
             state.page = data;
@@ -57,11 +58,13 @@ export default {
         },
         mutateSelectedAuthorProducts(state, data) {
             state.selectedAuthorProducts = data.results;
-            state.pageCount = data.count;
+            let numberOfPages = Math.ceil(data.count/6)
+            state.pageCount = numberOfPages;
         },
         mutateSelectedCategoryProducts(state, data) {
             state.selectedCategoryProducts = data.results;
-            state.pageCount = data.count;
+            let numberOfPages = Math.ceil(data.count/6)
+            state.pageCount = numberOfPages;
         },
         mutateSingleProduct(state, data) {
             state.singleProduct = data;

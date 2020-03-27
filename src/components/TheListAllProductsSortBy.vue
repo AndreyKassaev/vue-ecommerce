@@ -32,7 +32,8 @@ export default {
     },
     methods: {
         ...mapMutations("TheProduct", {
-            mutateOrderingType: "mutateOrderingType"
+            mutateOrderingType: "mutateOrderingType",
+            mutatePage: "mutatePage"
         }),
         ...mapActions("TheProduct", {
             getAllProducts: "getAllProducts"
@@ -45,7 +46,9 @@ export default {
                 this.clickedOne = false;
                 this.clickedTwo = true;
             }
+            let firstPage = 1
             this.mutateOrderingType(data);
+            this.mutatePage(firstPage);
             this.getAllProducts();
         }
     }

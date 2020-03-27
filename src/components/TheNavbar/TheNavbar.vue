@@ -20,21 +20,21 @@
             </v-btn>
             <ThePaymentHistoryButton
                 v-if="
-                    this.token != null || user === 'auth' || user === 'author'
+                    user === 'auth' || user === 'author'
                 "
                 class="hidden-sm-and-down"
             />
             <TheBecomeAnAuthorButton
-                v-if="this.token != null || user === 'auth'"
+                v-if="user === 'auth'"
                 class="hidden-sm-and-down"
             />
            
             <TheAddProductButton
-                v-if="this.myProile != null || user === 'author'"
+                v-if="user === 'author'"
                 class="hidden-sm-and-down"
             />
             <TheLoginButton
-                v-if="this.token === null && user === 'anon'"
+                v-if="user === 'anon'"
                 class="hidden-sm-and-down"
             />
             <TheCartButton class="hidden-sm-and-down" />
@@ -42,7 +42,7 @@
         <v-navigation-drawer v-model="drawer" temporary app>
             <v-list nav dense>
                 <v-list-item-group active-class="dark--text text--accent-4">
-                    <v-list-item two-line @click="onProfile" v-if="this.myProile != null || user === 'author'">
+                    <v-list-item two-line @click="onProfile" v-if="user === 'author'">
                         <v-list-item-avatar>
                             <img
                                 :src="profileImage"
@@ -50,8 +50,7 @@
                         </v-list-item-avatar>
 
                         <v-list-item-content >
-                            <v-list-item-title 
-                            v-if="this.myProile != null || user === 'author'">
+                            <v-list-item-title>
                             {{profileName }}
                             </v-list-item-title>
                         </v-list-item-content>
@@ -88,7 +87,7 @@
                         </v-list-item-icon>
                         <v-list-item-title>My Cart</v-list-item-title>
                     </v-list-item>
-                    <v-list-item to="/login" v-if="this.token === null && user === 'anon'">
+                    <v-list-item to="/login" v-if="user === 'anon'">
                         <v-list-item-icon>
                             <v-icon>mdi-account</v-icon>
                         </v-list-item-icon>
@@ -97,7 +96,7 @@
 
                     <v-list-item
                         to="/author"
-                        v-if="this.token != null || user === 'auth'"
+                        v-if="user === 'auth'"
                     >
                         <v-list-item-icon>
                             <v-icon>mdi-account-plus</v-icon>
@@ -108,7 +107,6 @@
                     <v-list-item
                         to="/payment-history"
                         v-if="
-                            this.token != null ||
                                 user === 'auth' ||
                                 user === 'author'
                         "
@@ -121,7 +119,7 @@
 
                     <v-list-item
                         to="/my-art"
-                        v-if="this.myProile != null || user === 'author'"
+                        v-if="user === 'author'"
                     >
                         <v-list-item-icon>
                             <v-icon>mdi-image-search-outline</v-icon>
@@ -131,7 +129,7 @@
 
                     <v-list-item
                         to="/add-product"
-                        v-if="this.myProile != null || user === 'author'"
+                        v-if="user === 'author'"
                     >
                         <v-list-item-icon>
                             <v-icon>mdi-image-plus</v-icon>
@@ -167,8 +165,10 @@ export default {
         return {
             drawer: false,
             user: null,
-            profileImage: localStorage.getItem('profileImage'),
-            profileName: localStorage.getItem('profileName')
+            profileImage: null,
+            profileName: null,
+            tokenArg: "token",
+            profileArg: "profile"
         };
     },
     computed: {
@@ -179,6 +179,18 @@ export default {
         ...mapGetters("TheAuthor", {
             myProile: "getMyProfile"
         })
+    },
+    watch: {
+        token(newVal, oldVal){
+            if(newVal != oldVal || newVal === null){
+                this.whoIsItReactive(this.tokenArg)
+            }
+        },
+        myProile(newVal, oldVal){
+            if(newVal != oldVal || newVal === null){
+                this.whoIsItReactive(this.profileArg)
+            }
+        }
     },
     methods: {
        
@@ -193,6 +205,8 @@ export default {
         },
         whoIsIt() {
             if (localStorage.getItem("profileName")) {
+                this.profileImage = localStorage.getItem('profileImage')
+                this.profileName = localStorage.getItem('profileName')
                 this.user = "author";
             } else if (
                 localStorage.getItem("authToken") &&
@@ -201,6 +215,17 @@ export default {
                 this.user = "auth";
             } else {
                 this.user = "anon";
+            }
+        },
+        whoIsItReactive(data){
+            if(data === "token"){
+                this.user = "auth"
+            }else if(data === "profile"){
+                this.profileImage = localStorage.getItem('profileImage')
+                this.profileName = localStorage.getItem('profileName')
+                this.user = "author"
+            }else{
+                this.user = "anon"
             }
         },
         onTitleClick() {

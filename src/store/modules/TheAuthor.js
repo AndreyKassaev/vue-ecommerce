@@ -31,7 +31,8 @@ export default {
     mutations: {
         mutateAuthors(state, data) {
             state.authors = data.results;
-            state.pageCount = data.count;
+            let numberOfPages = Math.ceil(data.count/6)
+            state.pageCount = numberOfPages;
         },
         mutatePage(state, data) {
             state.page = data;
