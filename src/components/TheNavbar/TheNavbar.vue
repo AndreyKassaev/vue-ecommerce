@@ -1,9 +1,9 @@
 <template>
     <div>
-        <v-app-bar app dark>
+        <v-app-bar app dark dense>
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-            <v-toolbar-title @click="onTitleClick">
+            <v-toolbar-title @click="onTitleClick" class="titlecursor">
                 Fictional
                 <span class="font-weight-light">
                     Online
@@ -22,22 +22,22 @@
                 v-if="
                     user === 'auth' || user === 'author'
                 "
-                class="hidden-sm-and-down"
+                
             />
+            <TheCartIcon class="d-none d-flex d-sm-flex d-md-none"/>
             <TheBecomeAnAuthorButton
                 v-if="user === 'auth'"
-                class="hidden-sm-and-down"
             />
            
             <TheAddProductButton
                 v-if="user === 'author'"
-                class="hidden-sm-and-down"
             />
             <TheLoginButton
                 v-if="user === 'anon'"
                 class="hidden-sm-and-down"
             />
             <TheCartButton class="hidden-sm-and-down" />
+
         </v-app-bar>
         <v-navigation-drawer v-model="drawer" temporary app>
             <v-list nav dense>
@@ -146,6 +146,7 @@
 import { mapGetters, mapMutations, mapActions } from "vuex";
 
 import TheCartButton from "./TheCartButton.vue";
+import TheCartIcon from "./TheCartIcon.vue";
 import TheLoginButton from "./TheLoginButton.vue";
 import TheSearchButton from "./TheSearchButton.vue";
 import TheBecomeAnAuthorButton from "./TheBecomeAnAuthorButton.vue";
@@ -155,6 +156,7 @@ import ThePaymentHistoryButton from "./ThePaymentHistoryButton.vue";
 export default {
     components: {
         TheCartButton,
+        TheCartIcon,
         TheLoginButton,
         TheSearchButton,
         TheBecomeAnAuthorButton,

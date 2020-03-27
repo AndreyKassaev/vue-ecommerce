@@ -5,6 +5,7 @@
             placeholder="Search..."
             hide-details
             outlined
+            dense
             append-icon="mdi-magnify"
             v-model="searchInput"
         ></v-text-field>
