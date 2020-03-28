@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <div class="bc">
-            <p class="my-2  display-2 hidden-sm-and-down">
+            <p class="my-2  display-1 hidden-sm-and-down">
                 Authors:
             </p>
             <p class="my-1  title d-none d-flex d-sm-flex d-md-none">

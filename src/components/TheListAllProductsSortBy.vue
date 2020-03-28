@@ -1,7 +1,7 @@
 <template>
     <v-menu offset-y>
         <template v-slot:activator="{ on }">
-            <v-btn class="ml-4" light v-on="on">
+            <v-btn class="ml-4" color="red"  outlined v-on="on">
                 Sort By
             </v-btn>
         </template>

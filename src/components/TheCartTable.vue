@@ -15,15 +15,7 @@
                                 Quantity
                             </th>
                             <th class="text-left title font-weight-bold">
-                              <div class="d-flex align-center">
-                                <p>
-                                Total_
-                                </p>
-                                
-                                <p>
-                                Price
-                                </p>
-                            </div>
+                                Total_Price
                             </th>
                             <th v-if="items.is_active" class="text-left"></th>
                         </tr>
@@ -42,7 +34,7 @@
                                 }}
                             </td>
                             <td>
-                            {{ item.split(" ")[1] }}$
+                            {{( item.split(" ")[1]*1 ).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}}$
                             </td>
                             <td>
                             <div class="d-flex">
@@ -66,7 +58,7 @@
                             </td>
 
                             <td>
-                                {{ item.split(" ")[1] * item.split(" ")[2] }}
+                                {{( item.split(" ")[1] * item.split(" ")[2] ).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}}$
                             </td>
                             <td v-if="items.is_active">
                                 <v-icon
@@ -82,9 +74,8 @@
                     </tbody>
                 </template>
             </v-simple-table>
-            <p class="text-right display-1 mt-4 mb-0 ult">
-                Total:
-                <strong color="black--text">{{ items.total_price }}$</strong>
+            <p class="text-right title mt-4 mb-0 ult">
+                Total: {{( items.total_price ).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}}$</strong>
             </p>
         </v-card-text>
         <v-card-actions v-if="items.is_active" class="pa-0">

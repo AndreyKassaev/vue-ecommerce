@@ -22,7 +22,7 @@
                                 {{ item.items[0].split(" ").slice(4).join(" ") }}...({{item.total_items}}_items)
                             </td>
                             <td>
-                                {{ item.total_price }}$
+                                {{( item.total_price ).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}}$
                             </td>
                             <td>
                                 {{ moment(item.date_created).fromNow()}}

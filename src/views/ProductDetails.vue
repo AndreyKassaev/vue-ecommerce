@@ -15,7 +15,7 @@
                         }}</v-card-title>
                         <v-card-text class="text--primary">
                             <div class="headline mb-4">
-                                {{ this.product.price }} $
+                                {{( this.product.price ).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}}$
                             </div>
                             <div class="title mb-4 ">
                                 Author: 
@@ -31,6 +31,9 @@
                             </span>
                             </div>
                             <div class="body-1">
+                            <span class="title">
+                            Description: 
+                            </span>
                                 {{ this.product.description }}
                             </div>
                         </v-card-text>

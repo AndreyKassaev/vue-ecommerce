@@ -3,7 +3,7 @@
         <div
             class="d-flex justify-space-between align-center bc"
         >
-            <p class="my-2  display-2 hidden-sm-and-down">
+            <p class="my-2  display-1 hidden-sm-and-down">
                 Art Gallery:
             </p>
             <p class="my-2  title d-none d-flex d-sm-flex d-md-none">

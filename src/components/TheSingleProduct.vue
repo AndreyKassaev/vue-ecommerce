@@ -9,12 +9,12 @@
                 
                 @click="onImageClick(product.title)"
                 >
-                    <v-card-title class="text-shadow">{{
+                    <v-card-title class="text-shadow display-1">{{
                         product.title
                     }}</v-card-title>
                 </v-img>
 
-                <v-card-text class="display-2">{{ product.price }} $</v-card-text>
+                <v-card-text class="display-1">{{( product.price ).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}}$</v-card-text>
 
                 <v-card-actions class="pa-0">
                     <v-btn color="orange" width="100%" @click="addToCart(product.id)">

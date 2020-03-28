@@ -37,7 +37,7 @@
                                 {{ item.title }}
                             </td>
 
-                            <td>{{ item.price }}$</td>
+                            <td>{{( item.price ).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}}$</td>
                             <td @click="onEditIcon(item.title)">
                             <v-icon>
                             mdi-border-color

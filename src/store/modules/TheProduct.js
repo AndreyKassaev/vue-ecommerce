@@ -8,7 +8,7 @@ export default {
         products: [],
         page: 1,
         pageCount: null,
-        orderingType: "date_created",
+        orderingType: "-date_created",
         searchValue: "",
         selectedAuthorProducts: null,
         selectedCategoryProducts: null,

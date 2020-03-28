@@ -18,24 +18,31 @@
             </v-col>
 
             <v-col cols="12" sm="6">
-                <p class="mb-2 font-weight-bold title">
+                <p class="mb-2 body-1">
+                <span class="title">
+                Author: 
+                </span>
                     {{ this.author.name }}
                 </p>
                 <v-divider></v-divider>
 
-                <p class="my-2 body-1">{{ this.author.bio }}</p>
+                <p class="my-2 body-1">
+                <span class="title">
+                Bio: 
+                </span>
+                {{ this.author.bio }}
+                </p>
             </v-col>
         </v-sheet>
         <div
             class="d-flex justify-space-between align-center bc mt-3"
             v-if="this.author != null"
         >
-            <p class="my-2  display-2 hidden-sm-and-down">
-                Art Of
-                <strong> {{ this.author.name }}: </strong>
+            <p class="my-2  display-1 hidden-sm-and-down">
+                Art Of {{ this.author.name }}:
             </p>
             <p class="my-2  title d-none d-flex d-sm-flex d-md-none">
-                {{ this.author.name }}:
+                Art Of {{ this.author.name }}:
             </p>
             <TheSelectedAuthorArtSortBy />
         </div>

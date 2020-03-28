@@ -18,19 +18,26 @@
             </v-col>
 
             <v-col cols="12" sm="6">
-                <p class="mb-2 font-weight-bold title">
+                <p class="mb-2 body-1">
+                <span class="title">
+                Category: 
+                </span>
                     {{ this.category.title }}
                 </p>
                 <v-divider></v-divider>
 
-                <p class="my-2 body-1">{{ this.category.description }}</p>
+                <p class="my-2 body-1">
+                <span class="title">
+                Description: 
+                </span>
+                {{ this.category.description }}</p>
             </v-col>
         </v-sheet>
         <div
             class="d-flex justify-space-between align-center bc mt-3"
             v-if="this.category != null"
         >
-            <p class="my-2  display-2 hidden-sm-and-down">
+            <p class="my-2  display-1 hidden-sm-and-down">
                 Art Of
                 <strong> {{ this.category.title }} </strong>
                 Category:

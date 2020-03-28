@@ -27,7 +27,7 @@ export default {
     watch: {
         allCarts(newVal, oldVal) {
             if (newVal != oldVal || newVal === null) {
-                this.haveProducts();
+                this.displayOrNot();
             }
         }
     },
@@ -36,17 +36,24 @@ export default {
         ...mapActions("TheCart", {
             getAllCarts: "getAllCarts"
         }),
-        haveProducts() {
-            try {
-                if (this.allCarts.length === 1 && this.allCarts[0].items.length === 0) {
-                    this.haveProductsBoolean = false;
-                } else {
-                    this.haveProductsBoolean = true;
+        displayOrNot(){
+            try{
+                let activeIndex = null
+                for(let i = 0; i < this.allCarts.length; i++){
+                    if(this.allCarts[i].is_active === true){
+                        activeIndex = i
+                    }
                 }
-            } catch (err) {
-                this.haveProductsBoolean = false;
+                if(this.allCarts[activeIndex].items.length != 0){
+                    this.haveProductsBoolean = true
+                }else{
+                    this.haveProductsBoolean = false
+                }
+
+            }catch (err) {
+                this.haveProductsBoolean = false
             }
-        }
+        },
     },
     
     
