@@ -20,6 +20,22 @@ if(localStorage.getItem('authToken'))
   next('/login'); 
  }
 }
+function guardPayment(to, from, next)
+{
+ var isAuthenticated= false;
+if(localStorage.getItem('authToken') || localStorage.getItem('sid'))
+  isAuthenticated = true;
+ else
+  isAuthenticated= false;
+ if(isAuthenticated) 
+ {
+  next(); 
+ } 
+ else
+ {
+  next('/login'); 
+ }
+}
 
 const routes = [
   {
@@ -55,12 +71,13 @@ const routes = [
   },
   {
     path: '/order',
+    beforeEnter : guardPayment,
     name: 'Order',
     component: () => import('../views/Order.vue')
   },
   {
     path: '/payment',
-    beforeEnter : guardMyroute,
+    beforeEnter : guardPayment,
     name: 'Payment',
     component: () => import('../views/Braintree.vue')
   },

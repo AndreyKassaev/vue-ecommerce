@@ -6,15 +6,7 @@
                     <thead>
                         <tr>
                             <th class="text-left title font-weight-bold">
-                            <div class="d-flex align-center">
-                                <p>
-                                Art_
-                                </p>
-                                
-                                <p>
                                 Item
-                                </p>
-                            </div>
                             </th>
                             <th class="text-left title font-weight-bold">
                                 Price
