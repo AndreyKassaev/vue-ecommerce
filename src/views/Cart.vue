@@ -63,6 +63,9 @@ export default {
             }
         }
     },
+    updated() {
+        this.haveProducts()
+    },
 
     mounted() {
         this.unhashParams();

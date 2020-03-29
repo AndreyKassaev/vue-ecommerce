@@ -72,3 +72,8 @@ export default {
     }
 };
 </script>
+<style>
+.v-card__title{
+    word-break: normal !important;
+}
+</style>
