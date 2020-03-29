@@ -102,6 +102,11 @@ export default {
                 return this.page;
             },
             set(value) {
+                window.scrollTo({
+                    top: 0,
+                    left: 0,
+                    behavior: 'smooth'
+                });
                 this.mutatePage(value);
                 this.getAllSelectedCategoryProducts(
                     (this.$route.params.title)
@@ -140,6 +145,7 @@ export default {
     },
     mounted() {
         this.$vuetify.theme.themes.light.primary = "#212121";
+        this.mutatePage(1);
         this.getSingleCategory(this.$route.params.title);
         this.getAllSelectedCategoryProducts(this.$route.params.title);
     }

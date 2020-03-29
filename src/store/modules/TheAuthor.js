@@ -93,7 +93,7 @@ export default {
                                     "profileName",
                                     res.data.name
                                 );
-                                router.push({ path: "/" });
+                                router.push({ path: "/authors" });
                             })
                             .catch(err => console.log(err));
                     } else {

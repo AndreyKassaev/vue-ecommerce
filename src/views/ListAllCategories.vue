@@ -60,6 +60,11 @@ export default {
                 return this.page;
             },
             set(value) {
+                window.scrollTo({
+                    top: 0,
+                    left: 0,
+                    behavior: 'smooth'
+                });
                 this.mutatePage(value);
                 this.getAllCategories();
             }

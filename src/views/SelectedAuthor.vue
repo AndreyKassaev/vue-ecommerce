@@ -103,6 +103,11 @@ export default {
                 return this.page;
             },
             set(value) {
+                window.scrollTo({
+                    top: 0,
+                    left: 0,
+                    behavior: 'smooth'
+                });
                 this.mutatePage(value);
                 this.getAllSelectedAuthorProducts(
                     (this.$route.params.name)
@@ -141,6 +146,7 @@ export default {
     },
     mounted() {
         this.$vuetify.theme.themes.light.primary = "#212121";
+        this.mutatePage(1);
         this.getSingleAuthor(this.$route.params.name);
         this.getAllSelectedAuthorProducts(this.$route.params.name);
         this.haveProducts()
