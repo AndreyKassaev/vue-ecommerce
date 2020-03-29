@@ -35,6 +35,12 @@
                 v-if="user === 'anon'"
                 class="hidden-sm-and-down"
             />
+            <TheLogoutButton @logOut="whoIsIt" class="ml-2 hidden-sm-and-down" v-if="
+                    user === 'auth' || user === 'author'
+                "/>
+            <TheLogoutIcon @logOut="whoIsIt" v-if="
+                    user === 'auth' || user === 'author'
+                "/>
             <TheLoginIcon v-if="user === 'anon'" />
             <TheCartIcon class="d-none d-flex d-sm-flex d-md-none"/>
             <TheCartIconEmpty v-if="emptyCartIcon" class="d-none d-flex d-sm-flex d-md-none"/>
@@ -151,6 +157,8 @@ import TheCartButton from "./TheCartButton.vue";
 import TheCartIcon from "./TheCartIcon.vue";
 import TheCartIconEmpty from "./TheCartIconEmpty.vue";
 import TheLoginButton from "./TheLoginButton.vue";
+import TheLogoutButton from "./TheLogoutButton.vue";
+import TheLogoutIcon from "./TheLogoutIcon.vue";
 import TheLoginIcon from "./TheLoginIcon.vue";
 import TheSearchButton from "./TheSearchButton.vue";
 import TheBecomeAnAuthorButton from "./TheBecomeAnAuthorButton.vue";
@@ -163,6 +171,8 @@ export default {
         TheCartIcon,
         TheCartIconEmpty,
         TheLoginButton,
+        TheLogoutButton,
+        TheLogoutIcon,
         TheLoginIcon,
         TheSearchButton,
         TheBecomeAnAuthorButton,
