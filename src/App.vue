@@ -2,7 +2,7 @@
   <v-app>
     <TheSnackBar/>
     <TheNavbar/>
-    <v-content>
+    <v-content class="maincontent">
       <router-view :key="$route.fullPath"></router-view>
     </v-content>
     <TheFooter/>
@@ -29,5 +29,8 @@ export default {
 button {
     outline: none !important;
 } 
+.maincontent{
+  background-color: #FAFAFA;
+}
 
 </style>

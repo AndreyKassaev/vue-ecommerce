@@ -1,8 +1,11 @@
 <template>
     <v-menu offset-y>
         <template v-slot:activator="{ on }">
-            <v-btn class="ml-4" color="red"  outlined v-on="on">
+            <v-btn class="ml-4 white--text" color="red"  depressed v-on="on">
                 Sort By
+                <v-icon right>
+                    mdi-menu-down
+                </v-icon>
             </v-btn>
         </template>
         <v-list class="py-0">

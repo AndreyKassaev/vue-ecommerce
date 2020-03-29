@@ -2,7 +2,7 @@
     <div>
         <v-text-field
             color="dark"
-            placeholder="Search..."
+            placeholder="Search art..."
             hide-details
             outlined
             dense

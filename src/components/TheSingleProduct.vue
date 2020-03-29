@@ -1,18 +1,19 @@
 <template>
         <v-hover v-slot:default="{ hover }">
             <v-card
-                :elevation="hover ? 12 : 2"
+                :elevation="hover ? 24 : 2"
                 :class="{ 'on-hover': hover }"
                 
             >
-                <v-img contain class="white--text align-end" :src="product.image"
+                <v-img contain :src="product.image"
                 
                 @click="onImageClick(product.title)"
+                height="300px"
                 >
-                    <v-card-title class="text-shadow display-1">{{
-                        product.title
-                    }}</v-card-title>
                 </v-img>
+                <v-card-title class="title">{{
+                    product.title
+                }}</v-card-title>
 
                 <v-card-text class="display-1">{{( product.price ).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}}$</v-card-text>
 
@@ -68,5 +69,8 @@ export default {
 }
 .v-image:hover{
     cursor: pointer;
+}
+.v-card__title{
+    word-break: normal !important;
 }
 </style>

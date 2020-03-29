@@ -38,12 +38,10 @@
             v-if="this.category != null"
         >
             <p class="my-2  display-1 hidden-sm-and-down">
-                Art Of
-                <strong> {{ this.category.title }} </strong>
-                Category:
+                Art Of {{ this.category.title }} Category:
             </p>
             <p class="my-2  title d-none d-flex d-sm-flex d-md-none">
-                {{ this.category.title }} Category:
+                Art Of {{ this.category.title }} Category:
             </p>
             <TheSelectedCategoryArtSortBy />
         </div>

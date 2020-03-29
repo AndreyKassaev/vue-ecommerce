@@ -6,11 +6,11 @@
                 :class="{ 'on-hover': hover }"
                 :to="{ name: 'Selected Category', params: { title: category.title } }"
             >
-                <v-img contain class="white--text align-end" :src="category.image">
-                    <v-card-title class="text-shadow display-2">{{
+                <v-img contain  :src="category.image" height="300px">
+                </v-img>
+                    <v-card-title class="title">{{
                         category.title
                     }}</v-card-title>
-                </v-img>
 
                 <v-card-actions class="pa-0">
                     <v-btn color="orange" width="100%">
@@ -48,5 +48,8 @@ export default {
 
 .v-card:not(.on-hover) {
     opacity: 1;
+}
+.v-card__title{
+    word-break: normal !important;
 }
 </style>
