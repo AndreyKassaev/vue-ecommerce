@@ -5,7 +5,6 @@
                 <v-col cols="12" md="8">
                     <v-card class="mx-auto">
                         <v-img
-                            class="white--text align-end"
                             :src="this.product.image"
                         >
                         </v-img>
@@ -120,5 +119,8 @@ export default {
 }
 .titlecursor:hover {
     text-shadow: 0px 0px 8px rgba(255, 179, 0, 1);
+}
+.v-card__title{
+    word-break: normal !important;
 }
 </style>
