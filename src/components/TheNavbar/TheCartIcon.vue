@@ -33,7 +33,7 @@ export default {
         }),
         haveProducts() {
             try {
-                if (this.totalItems.length != 0) {
+                if (this.totalItems.length != 0 && this.totalItems != 0) {
                     this.haveProductsBoolean = true;
                     this.badgeContent = this.totalItems;
                 } else {

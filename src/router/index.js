@@ -54,6 +54,12 @@ const routes = [
     component: () => import('../views/Login.vue')
   },
   {
+    path: '/logout/',
+    beforeEnter : guardMyroute,
+    name: 'Logout',
+    component: () => import('../views/Logout.vue')
+  },
+  {
     path: '/signup',
     name: 'Sign Up',
     component: () => import('../views/Register.vue')

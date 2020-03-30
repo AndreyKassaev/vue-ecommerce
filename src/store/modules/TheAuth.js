@@ -90,7 +90,7 @@ export default {
                 })
                 .catch(err => console.log(err));
         },
-        submitSignInCredentials({ commit, state }, credentials) {
+        submitSignInCredentials({ commit, state, dispatch }, credentials) {
             let customHeader = {};
             let sid = localStorage.getItem("sid");
             if (sid) {
@@ -103,9 +103,20 @@ export default {
                     headers: customHeader
                 })
                 .then(res => {
+                    commit("mutateToken", res.data.key);
+                    localStorage.setItem("authToken", res.data.key);
+                    dispatch("TheCart/getTotalItems", {}, { root: true });
+                    commit(
+                        "TheSnackBar/mutateText",
+                        `Successfully Signed In With ${credentials.email}`,
+                        { root: true }
+                    );
+                    router.push({ path: "/" });
                     axios
                         .get(`${api.BASE_URI}auth/are-you-author/`, {
-                            headers: customHeader
+                            headers: {
+                                Authorization: `Token ${localStorage.getItem("authToken")}`
+                            }
                         })
                         .then(res => {
                             if(res.data){
@@ -117,15 +128,6 @@ export default {
                             }
                         })
                         .catch(err => console.log(err));
-                            
-                    commit("mutateToken", res.data.key);
-                    localStorage.setItem("authToken", res.data.key);
-                    commit(
-                        "TheSnackBar/mutateText",
-                        `Successfully Signed In With ${credentials.email}`,
-                        { root: true }
-                    );
-                    router.push({ path: "/" });
                 })
                 .catch(err => {
                     commit("TheSnackBar/mutateText", "Wrong Credentials", {

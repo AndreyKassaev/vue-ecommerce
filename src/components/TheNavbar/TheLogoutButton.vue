@@ -9,10 +9,12 @@
 <script>
 export default {
     methods: {
-        onLogout(){
-            localStorage.clear()
-            this.$emit('logOut')
-        }
+        goToLogout(){
+            if(this.$route.name != "Logout"){
+                this.$router.push('/logout')
+            }
+        },
     },
 }
+
 </script>

@@ -1,7 +1,7 @@
 <template>
  <v-tooltip bottom>
         <template v-slot:activator="{ on }">
-            <v-btn @click="onLogout" v-on="on" fab small class="ml-2 d-none d-flex d-sm-flex d-md-none" light >
+            <v-btn @click="goToLogout" v-on="on" fab small class="ml-2" light >
                 <v-icon>
                     mdi-account-cancel
                 </v-icon>
@@ -13,10 +13,11 @@
 <script>
 export default {
     methods: {
-        onLogout(){
-            localStorage.clear()
-            this.$emit('logOut')
-        }
+        goToLogout(){
+            if(this.$route.name != "Logout"){
+                this.$router.push('/logout')
+            }
+        },
     },
 }
 </script>

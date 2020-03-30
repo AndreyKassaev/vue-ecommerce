@@ -1,7 +1,7 @@
 <template>
  <v-tooltip bottom>
         <template v-slot:activator="{ on }">
-            <v-btn to="/login" v-on="on" fab small class="ml-2 d-none d-flex d-sm-flex d-md-none" light >
+            <v-btn to="/login" v-on="on" fab small class="ml-2" light >
                 <v-icon>
                     mdi-account-key
                 </v-icon>

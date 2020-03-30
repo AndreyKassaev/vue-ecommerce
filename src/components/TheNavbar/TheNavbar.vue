@@ -3,13 +3,14 @@
         <v-app-bar app dark dense>
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-            <v-toolbar-title @click="onTitleClick" class="titlecursor">
+            <v-toolbar-title @click="onTitleClick" class="titlecursor hidden-sm-and-down">
                 Fictional
                 <span class="font-weight-light">
                     Online
                 </span>
                 Art Shop
             </v-toolbar-title>
+            
             <v-spacer></v-spacer>
             <TheSearchButton class="hidden-sm-and-down" />
             <v-btn class="ml-2 hidden-sm-and-down" light to="/authors">
@@ -18,48 +19,34 @@
             <v-btn class="ml-2 hidden-sm-and-down" light to="/categories">
                 Categories
             </v-btn>
-           
-            <TheAddProductButton
-                v-if="user === 'author'"
-            />
-            <TheBecomeAnAuthorButton
-                v-if="user === 'auth'"
-            />
-            <ThePaymentHistoryButton
-                v-if="
-                    user === 'auth' || user === 'author'
-                "
-                
-            />
-            <TheLoginButton
-                v-if="user === 'anon'"
-                class="hidden-sm-and-down"
-            />
-            <TheLogoutButton @logOut="whoIsIt" class="ml-2 hidden-sm-and-down" v-if="
-                    user === 'auth' || user === 'author'
-                "/>
-            <TheLogoutIcon @logOut="whoIsIt" v-if="
-                    user === 'auth' || user === 'author'
-                "/>
-            <TheLoginIcon v-if="user === 'anon'" />
-            <TheCartIcon class="d-none d-flex d-sm-flex d-md-none"/>
-            <TheCartIconEmpty v-if="emptyCartIcon" class="d-none d-flex d-sm-flex d-md-none"/>
-            <TheCartButton class="hidden-sm-and-down" />
 
+            <TheAddProductButton v-if="user === 'author'" />
+            <TheBecomeAnAuthorButton v-if="user === 'auth'" />
+            <ThePaymentHistoryButton
+                v-if="user === 'auth' || user === 'author'"
+            />
+            <TheLogoutIcon
+                v-if="user === 'auth' || user === 'author'"
+            />
+            <TheLoginIcon v-if="user === 'anon'" />
+            <TheCartIcon />
+            <TheCartIconEmpty v-if="emptyCartIcon" />
         </v-app-bar>
         <v-navigation-drawer v-model="drawer" temporary app>
             <v-list nav dense>
                 <v-list-item-group active-class="dark--text text--accent-4">
-                    <v-list-item two-line @click="onProfile" v-if="user === 'author'">
+                    <v-list-item
+                        two-line
+                        @click="onProfile"
+                        v-if="user === 'author'"
+                    >
                         <v-list-item-avatar>
-                            <img
-                                :src="profileImage"
-                            />
+                            <img :src="profileImage" />
                         </v-list-item-avatar>
 
-                        <v-list-item-content >
+                        <v-list-item-content>
                             <v-list-item-title>
-                            {{profileName }}
+                                {{ profileName }}
                             </v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
@@ -101,11 +88,14 @@
                         </v-list-item-icon>
                         <v-list-item-title>Login</v-list-item-title>
                     </v-list-item>
+                    <v-list-item to="/logout" v-if="user === 'auth' || user === 'author'">
+                        <v-list-item-icon>
+                            <v-icon>mdi-account-cancel</v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-title>Log Out</v-list-item-title>
+                    </v-list-item>
 
-                    <v-list-item
-                        to="/author"
-                        v-if="user === 'auth'"
-                    >
+                    <v-list-item to="/author" v-if="user === 'auth'">
                         <v-list-item-icon>
                             <v-icon>mdi-account-plus</v-icon>
                         </v-list-item-icon>
@@ -114,10 +104,7 @@
 
                     <v-list-item
                         to="/payment-history"
-                        v-if="
-                                user === 'auth' ||
-                                user === 'author'
-                        "
+                        v-if="user === 'auth' || user === 'author'"
                     >
                         <v-list-item-icon>
                             <v-icon>mdi-credit-card-outline</v-icon>
@@ -125,20 +112,14 @@
                         <v-list-item-title>Payment History</v-list-item-title>
                     </v-list-item>
 
-                    <v-list-item
-                        to="/my-art"
-                        v-if="user === 'author'"
-                    >
+                    <v-list-item to="/my-art" v-if="user === 'author'">
                         <v-list-item-icon>
                             <v-icon>mdi-image-search-outline</v-icon>
                         </v-list-item-icon>
                         <v-list-item-title>My Art</v-list-item-title>
                     </v-list-item>
 
-                    <v-list-item
-                        to="/add-product"
-                        v-if="user === 'author'"
-                    >
+                    <v-list-item to="/add-product" v-if="user === 'author'">
                         <v-list-item-icon>
                             <v-icon>mdi-image-plus</v-icon>
                         </v-list-item-icon>
@@ -153,11 +134,8 @@
 <script>
 import { mapGetters, mapMutations, mapActions } from "vuex";
 
-import TheCartButton from "./TheCartButton.vue";
 import TheCartIcon from "./TheCartIcon.vue";
 import TheCartIconEmpty from "./TheCartIconEmpty.vue";
-import TheLoginButton from "./TheLoginButton.vue";
-import TheLogoutButton from "./TheLogoutButton.vue";
 import TheLogoutIcon from "./TheLogoutIcon.vue";
 import TheLoginIcon from "./TheLoginIcon.vue";
 import TheSearchButton from "./TheSearchButton.vue";
@@ -167,11 +145,8 @@ import ThePaymentHistoryButton from "./ThePaymentHistoryButton.vue";
 
 export default {
     components: {
-        TheCartButton,
         TheCartIcon,
         TheCartIconEmpty,
-        TheLoginButton,
-        TheLogoutButton,
         TheLogoutIcon,
         TheLoginIcon,
         TheSearchButton,
@@ -187,7 +162,7 @@ export default {
             profileName: null,
             tokenArg: "token",
             profileArg: "profile",
-            emptyCartIcon: true,
+            emptyCartIcon: true
         };
     },
     computed: {
@@ -203,45 +178,50 @@ export default {
         })
     },
     watch: {
-        token(newVal, oldVal){
-            if(newVal != oldVal || newVal === null){
-                this.whoIsItReactive(this.tokenArg)
+        token(newVal, oldVal) {
+            if (newVal != oldVal) {
+                this.whoIsItReactive(this.tokenArg);
+            }
+            if(newVal === null){
+                this.whoIsIt()
             }
         },
-        myProile(newVal, oldVal){
-            if(newVal != oldVal || newVal === null){
-                this.whoIsItReactive(this.profileArg)
+        myProile(newVal, oldVal) {
+            if (newVal != oldVal) {
+                this.whoIsItReactive(this.profileArg);
+            }
+            if(newVal === null){
+                this.whoIsIt()
             }
         },
-        totalItems(newVal, oldVal){
-            if(newVal != null){
-                this.emptyCartIcon = false
-            }else{
-                this.emptyCartIcon = true
+        totalItems(newVal, oldVal) {
+            if (newVal != null && newVal != 0) {
+                this.emptyCartIcon = false;
+            } else {
+                this.emptyCartIcon = true;
             }
-        },
-        
-        
+        }
     },
     methods: {
+        
         ...mapActions("TheCart", {
             getTotalItems: "getTotalItems"
         }),
-       
+
         onSearchEnter() {
             this.drawer = false;
         },
-       
-        onProfile(){
+
+        onProfile() {
             if (this.$route.name != "Profile") {
-                let name = localStorage.getItem('profileName')
-                this.$router.push({name: 'Profile', params:{name:name}})
+                let name = localStorage.getItem("profileName");
+                this.$router.push({ name: "Profile", params: { name: name } });
             }
         },
         whoIsIt() {
             if (localStorage.getItem("profileName")) {
-                this.profileImage = localStorage.getItem('profileImage')
-                this.profileName = localStorage.getItem('profileName')
+                this.profileImage = localStorage.getItem("profileImage");
+                this.profileName = localStorage.getItem("profileName");
                 this.user = "author";
             } else if (
                 localStorage.getItem("authToken") &&
@@ -252,15 +232,15 @@ export default {
                 this.user = "anon";
             }
         },
-        whoIsItReactive(data){
-            if(data === "token"){
-                this.user = "auth"
-            }else if(data === "profile"){
-                this.profileImage = localStorage.getItem('profileImage')
-                this.profileName = localStorage.getItem('profileName')
-                this.user = "author"
-            }else{
-                this.user = "anon"
+        whoIsItReactive(data) {
+            if (data === "token") {
+                this.user = "auth";
+            } else if (data === "profile") {
+                this.profileImage = localStorage.getItem("profileImage");
+                this.profileName = localStorage.getItem("profileName");
+                this.user = "author";
+            } else {
+                this.user = "anon";
             }
         },
         onTitleClick() {
@@ -273,9 +253,18 @@ export default {
         ...mapMutations("TheProduct", {
             searchValue: "mutateSearchValue"
         }),
+        ...mapMutations("TheCart", {
+            setTotalItems: "setTotalItems"
+        }),
+        ...mapMutations("TheSnackBar", {
+            mutateText:"mutateText"
+        }),
         ...mapActions("TheProduct", {
             getAllProducts: "getAllProducts"
-        })
+        }),
+        ...mapMutations("TheAuth",{
+            mutateToken:"mutateToken"
+        }),
     },
     mounted() {
         this.getTotalItems();
