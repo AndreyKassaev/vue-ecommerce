@@ -11,11 +11,11 @@
                 height="300px"
                 >
                 </v-img>
-                <v-card-title class="title">{{
+                <v-card-title @click="onImageClick(product.title)" class="title">{{
                     product.title
                 }}</v-card-title>
 
-                <v-card-text class="display-1">{{( product.price ).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}}$</v-card-text>
+                <v-card-text @click="onImageClick(product.title)" class="display-1">{{( product.price ).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}}$</v-card-text>
 
                 <v-card-actions class="pa-0">
                     <v-btn color="orange" width="100%" @click="addToCart(product.id)">
@@ -72,5 +72,8 @@ export default {
 }
 .v-card__title{
     word-break: normal !important;
+}
+.v-card__title, .v-card__text:hover{
+    cursor: pointer;
 }
 </style>
