@@ -13,7 +13,7 @@
             <v-col cols="12" sm="6">
                 <v-img
                     :src="this.author.image"
-                    height="500px"
+                    max-height="500px"
                 ></v-img>
             </v-col>
 

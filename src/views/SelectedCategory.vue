@@ -12,7 +12,7 @@
         >
             <v-col cols="12" sm="6">
                 <v-img
-                    height="500px"
+                    max-height="500px"
                     :src="this.category.image"
                 ></v-img>
             </v-col>
