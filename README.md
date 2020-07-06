@@ -2,10 +2,6 @@ Frontend part of eCommerce project made by Vue-cli, Vuetify
 
 (Backend part: https://github.com/dodep/drf-ecommerce)
 
-(Deploy: VPS, Postgresql, Gunicorn, Supervisor, Nginx)
-
-working example: https://www.dodep.club
-
 eCommerce project:
 
 name: Fictional Online Art Shop
